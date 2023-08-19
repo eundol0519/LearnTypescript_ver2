@@ -1,7 +1,13 @@
-let todoItems;
+interface Todo {
+  id: number;
+  title: string;
+  done: boolean;
+}
+
+let todoItems: Todo[];
 
 // api
-function fetchTodoItems(): object[] {
+function fetchTodoItems(): Todo[] {
   const todos = [
     { id: 1, title: "안녕", done: false },
     { id: 2, title: "타입", done: false },
@@ -12,14 +18,14 @@ function fetchTodoItems(): object[] {
 }
 
 // crud methods
-function fetchTodos(): object[] {
+function fetchTodos(): Todo[] {
   const todos = fetchTodoItems();
   return todos;
 }
 
 // ※ void: 결과 값을 반환하지 않는 함수에 설정합니다. 반면 결과 값을 반환하는 함수의 경우 명시적으로 반환 값의 타입을 기술할 수 있습니다.
 
-function addTodo(todo: object): void {
+function addTodo(todo: Todo): void {
   todoItems.push(todo);
 }
 
@@ -36,23 +42,21 @@ function completeTodo(
 }
 
 // business logic
-function logFirstTodo(): object {
+function logFirstTodo(): Todo {
   return todoItems[0];
 }
 
-function showCompleted(): object[] {
+function showCompleted(): Todo[] {
   return todoItems.filter(
     (item: { id: number; title: string; done: boolean }) => item.done
   );
 }
 
 // TODO: 아래 함수의 내용을 채워보세요. 아래 함수는 `addTodo()` 함수를 이용하여 2개의 새 할 일을 추가하는 함수입니다.
-function addTwoTodoItems(todos: object[] = []): void {
+function addTwoTodoItems(): void {
   // addTodo() 함수를 두 번 호출하여 todoItems에 새 할 일이 2개 추가되어야 합니다.
-
-  todos.map((item: object) => {
-    addTodo(item);
-  });
+  addTodo({ id: 4, title: '타입 정의', done: false });
+  addTodo({ id: 5, title: '복습', done: false });
 }
 
 // NOTE: 유틸 함수
